@@ -50,18 +50,3 @@ class FileAge:
 
 # Path is still hardcoded, planned feature
 FileAge(r'\\infsaa1012\ecprog_kba$\Outlook_Synch_Log\Logbuch.txt')
-
-
-
-
-'''
-----------------
-Planned Features
-----------------
-
-- Softcoded Path
-- GUI
-- Multiple Paths
-- Taskbar Icon
-
-'''
