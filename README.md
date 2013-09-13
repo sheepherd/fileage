@@ -20,3 +20,5 @@ o Softcoded Path
 o GUI
 o Multiple Paths
 o Taskbar Icon
+o Customize Time Format
+o Customizable Tooltip Title
