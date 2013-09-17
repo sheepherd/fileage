@@ -49,4 +49,4 @@ class FileAge:
         self.information(message[0], message[1])
 
 # Path is still hardcoded, planned feature
-FileAge(r'\\infsaa1012\ecprog_kba$\Outlook_Synch_Log\Logbuch.txt')
+FileAge('config.ini')
