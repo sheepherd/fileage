@@ -1,8 +1,7 @@
 #!/usr/bin/python
 
 import time
-import os
-import stat
+from os import stat
 
 #import balloontip
 import config
