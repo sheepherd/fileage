@@ -1,24 +1,20 @@
 #!/usr/bin/python
 
+
 import configparser
 
 
 class Configuration:
     def __init__(self):
+        configfile = 'config.ini'
+        self.path = self.check_configfile(configfile)
+
+    def check_configfile(self, configfile):
         config = configparser.ConfigParser()
-
-
-    def check_configfile(configfile):
         if config.read(configfile) == []:
-            config['basic'] = {'Path': ''}
+            config['basic'] = {'path': 'dummyfile.ini'}
             with open('config.ini', 'w') as configfile:
                 config.write(configfile)
-            print('no config')
+                return config['basic']['path']
         else:
-            print('config existent')
-            return True
-
-
-config = configparser.ConfigParser()
-configfile = 'config.ini'
-Configuration.check_configfile(configfile)
+            return config['basic']['path']

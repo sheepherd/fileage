@@ -16,7 +16,7 @@ none
 Planned Features
 ================
 
-o Softcoded Path
+x Softcoded Path
 o GUI
 o Multiple Paths
 o Taskbar Icon

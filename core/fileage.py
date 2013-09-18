@@ -1,8 +1,11 @@
+#!/usr/bin/python
+
 import time
 import os
 import stat
 
-import balloontip
+#import balloontip
+import config
 
 
 class FileAge:
@@ -14,13 +17,13 @@ class FileAge:
         # Caches the path
         # Runs the functions sequencially
         
-        self.information = balloontip.WindowsBalloonTip
+        self.information = print #balloontip.WindowsBalloonTip
         self.path = path
         
         exists = self.check_existence()
         message = self.generate_message(exists)
         self.show_tooltip(message)
-
+    
     def check_existence(self):
         # Checks if the file on given path exists
         # Returns True on success
@@ -48,5 +51,5 @@ class FileAge:
         
         self.information(message[0], message[1])
 
-# Path is still hardcoded, planned feature
-FileAge('config.ini')
+configuration = config.Configuration()
+FileAge(configuration.path)
