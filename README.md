@@ -11,7 +11,7 @@ Known Bugs
 ==========
 
 o configparser.DuplicateOptionError: While reading from config.ini [line  3]: option 'path1' in section 'path' already exists
-o Fileage is buggy, seems to be resettet after 0.13 Minutes.
+x Fileage is buggy, seems to be resettet after 0.13 Minutes.
 
 
 ================

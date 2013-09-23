@@ -30,18 +30,18 @@ class FileAge:
         try:
             open(path, 'r')
         except FileNotFoundError:
-            return False
+            return [path, False]
         else:
-            return True
+            return [path, True]
 
     def generate_message(self, exists):
         # Returns a message dependent on check_existence
         # The message contains the actual message and a title
         
-        if exists == True:
-            tmp = time.time() - os.stat(exists)[stat.ST_MTIME]
+        if exists[1] == True:
+            tmp = time.time() - os.stat(exists[0])[stat.ST_MTIME]
             return [str(round(tmp/60,2)), 'File Age:']
-        elif exists == False:
+        elif exists[1] == False:
             return ['Log file not found. Check the config.ini', 'Error:']
 
     def show_tooltip(self, message):
