@@ -10,7 +10,9 @@ Its a simple tool to check the fileage.
 Known Bugs
 ==========
 
-none
+o configparser.DuplicateOptionError: While reading from config.ini [line  3]: option 'path1' in section 'path' already exists
+o Fileage is buggy, seems to be resettet after 0.13 Minutes.
+
 
 ================
 Planned Features
@@ -18,7 +20,7 @@ Planned Features
 
 x Softcoded Path
 o GUI
-o Multiple Paths
+x Multiple Paths
 o Taskbar Icon
 o Customize Time Format
 o Customizable Tooltip Title

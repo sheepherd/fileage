@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
 import time
-from os import stat
+import os
+import stat
 
 #import balloontip
 import config
@@ -19,17 +20,18 @@ class FileAge:
         self.information = print #balloontip.WindowsBalloonTip
         self.path = path
         
-        exists = self.check_existence()
-        message = self.generate_message(exists)
-        self.show_tooltip(message)
+        for x in path:
+            exists = self.check_existence(x)
+            message = self.generate_message(exists)
+            self.show_tooltip(message)
     
-    def check_existence(self):
+    def check_existence(self, path):
         # Checks if the file on given path exists
         # Returns True on success
         # Returns False on error
         
         try:
-            open(self.path, 'r')
+            open(path, 'r')
         except FileNotFoundError:
             return False
         else:
@@ -40,15 +42,15 @@ class FileAge:
         # The message contains the actual message and a title
         
         if exists == True:
-            tmp = time.time() - os.stat(self.path)[stat.ST_MTIME]
-            return [str(round(tmp/60,2)), 'File Age']
+            tmp = time.time() - os.stat(exists)[stat.ST_MTIME]
+            return [str(round(tmp/60,2)), 'File Age:']
         elif exists == False:
-            return ['Log file not found\nCheck the config.ini', 'Error']
+            return ['Log file not found. Check the config.ini', 'Error:']
 
     def show_tooltip(self, message):
         # Feeds the tooltip a message and title
         
-        self.information(message[0], message[1])
+        self.information(message[1], message[0])
 
 configuration = config.Configuration()
 FileAge(configuration.path)
