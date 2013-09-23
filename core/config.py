@@ -13,6 +13,13 @@ class Configuration:
     def check_configfile(self, configfile):
         config = configparser.ConfigParser()
         options = {}
+        try:
+            config.read(configfile)
+
+        except configparser.DuplicateOptionError:
+            print('Error in config file')
+            exit()
+            
         if config.read(configfile) == []:
             config['path'] = {'path1': 'dummyfile.ini'}
             with open('config.ini', 'w') as configfile:
