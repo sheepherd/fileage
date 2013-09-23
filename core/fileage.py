@@ -16,10 +16,7 @@ class FileAge:
         # Initializes the tooltip
         # Caches the path
         # Runs the functions sequencially
-        
-        self.information = print #balloontip.WindowsBalloonTip
-        self.path = path
-        
+
         for x in path:
             exists = self.check_existence(x)
             message = self.generate_message(exists)
@@ -50,7 +47,7 @@ class FileAge:
     def show_tooltip(self, message):
         # Feeds the tooltip a message and title
         
-        self.information(message[1], message[0])
+        print(message[1], message[0])
 
 configuration = config.Configuration()
 FileAge(configuration.path)
