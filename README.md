@@ -28,7 +28,7 @@ o Customize Time Format
 
 o Customizable Tooltip Title
 
-o Logging
+x Logging with Timestamp
 
 x Better config error message
 

@@ -1,8 +1,10 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 
 import configparser
 import sys
+
+import communication
 
 
 class Configuration:
@@ -17,8 +19,7 @@ class Configuration:
             config.read(configfile)
 
         except configparser.DuplicateOptionError:
-            print('Error in config file')
-            print(sys.exc_info()[1])
+            communication.Communicate('Error in config file: {}'.format(sys.exc_info()[1]))
             exit()
             
         if config.read(configfile) == []:

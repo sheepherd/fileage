@@ -4,8 +4,9 @@ import time
 import os
 import stat
 
-#import balloontip
+# custom classes
 import config
+import communication
 
 
 class FileAge:
@@ -40,14 +41,14 @@ class FileAge:
         
         if exists[1] == True:
             tmp = time.time() - os.stat(exists[0])[stat.ST_MTIME]
-            return [str(round(tmp/60,2)), 'File Age:']
+            return 'File Age: ' + str(round(tmp/60,2))
         elif exists[1] == False:
-            return ['Log file not found. Check the config.ini', 'Error:']
+            return 'Error: Log file not found. Check the config.ini'
 
     def show_tooltip(self, message):
         # Feeds the tooltip a message and title
         
-        print(message[1], message[0])
+        communication.Communicate(message)
 
 configuration = config.Configuration()
 FileAge(configuration.path)
