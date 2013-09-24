@@ -2,7 +2,7 @@
 
 
 import configparser
-import re
+import sys
 
 
 class Configuration:
@@ -18,6 +18,7 @@ class Configuration:
 
         except configparser.DuplicateOptionError:
             print('Error in config file')
+            print(sys.exc_info()[1])
             exit()
             
         if config.read(configfile) == []:

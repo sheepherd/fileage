@@ -28,7 +28,9 @@ o Customize Time Format
 
 o Customizable Tooltip Title
 
-o Better config error message
+o Logging
+
+x Better config error message
 
 x Multiple Paths
 
