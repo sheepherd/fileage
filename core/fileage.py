@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import time
 import os
@@ -18,10 +18,13 @@ class FileAge:
         # Caches the path
         # Runs the functions sequencially
 
+        message = []
+
         for x in path:
             exists = self.check_existence(x)
-            message = self.generate_message(exists)
-            self.show_tooltip(message)
+            message.append(self.generate_message(exists))
+        
+        self.show_tooltip(message)
     
     def check_existence(self, path):
         # Checks if the file on given path exists
@@ -34,21 +37,25 @@ class FileAge:
             return [path, False]
         else:
             return [path, True]
+            
+            
+    def time_format(self):
+        config_time = config.Configuration('time').configuration
+        if config_time[0] == str(0):
+            return time.time()
 
     def generate_message(self, exists):
         # Returns a message dependent on check_existence
         # The message contains the actual message and a title
         
-        if exists[1] == True:
-            tmp = time.time() - os.stat(exists[0])[stat.ST_MTIME]
+        if exists[1] == True:    
+            tmp = self.time_format() - os.stat(exists[0])[stat.ST_MTIME]
             return 'File Age: ' + str(round(tmp/60,2))
         elif exists[1] == False:
             return 'Error: Log file not found. Check the config.ini'
 
     def show_tooltip(self, message):
-        # Feeds the tooltip a message and title
-        
         communication.Communicate(message)
 
-configuration = config.Configuration()
-FileAge(configuration.path)
+if __name__ == '__main__':
+    FileAge(config.Configuration('path').configuration)

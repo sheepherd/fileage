@@ -24,9 +24,9 @@ o GUI
 
 o Taskbar Icon
 
-o Customize Time Format
-
 o Customizable Tooltip Title
+
+o Customize Time Format
 
 x Logging with Timestamp
 

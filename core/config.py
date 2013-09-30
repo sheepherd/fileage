@@ -8,29 +8,37 @@ import communication
 
 
 class Configuration:
-    def __init__(self):
-        configfile = 'config.ini'   
-        self.path = self.check_configfile(configfile)       
+    
+    def __init__(self, section):
+        self.configfile = 'config.ini'
+        self.config = configparser.ConfigParser()  
+         
+        self.check_configfile() 
+        self.initiate_configfile()
+        
+        self.configuration = self.read_section(section)    
+        
 
-    def check_configfile(self, configfile):
-        config = configparser.ConfigParser()
-        options = {}
+    def check_configfile(self):
         try:
-            config.read(configfile)
+            self.config.read(self.configfile)
 
         except configparser.DuplicateOptionError:
             communication.Communicate('Error in config file: {}'.format(sys.exc_info()[1]))
             exit()
             
-        if config.read(configfile) == []:
-            config['path'] = {'path1': 'dummyfile.ini'}
-            with open('config.ini', 'w') as configfile:
-                config.write(configfile)
-                return[option for option in config['path'].values()]
-        else:
-            return [option for option in config['path'].values()]
-
+            
+    def read_section(self, section):
+            return [option for option in self.config[section].values()]
+            
+            
+    def initiate_configfile(self):
+        if self.config.read(self.configfile) == []:
+            self.config['path'] = {'path1': 'dummyfile.ini'}
+            self.config['time'] = {'format': '0'}
+            with open(self.configfile, 'w') as configfile:
+                self.config.write(configfile)
                 
 if __name__ == '__main__':
-    x = Configuration()
-    print(x.path)
+    x = Configuration('time')
+    print(x.configuration)
