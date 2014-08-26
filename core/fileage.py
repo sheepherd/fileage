@@ -1,31 +1,29 @@
 #!/usr/bin/python3
 
+# standard library
 import time
 import os
 import stat
+import logging
 
 # custom classes
 import config
-import communication
-
 
 class FileAge:
     # Class to check the fileage
     # Returns tooltip
     
     def __init__(self, path):
-        # Initializes the tooltip
         # Caches the path
         # Runs the functions sequencially
 
-        message = []
+        logging.basicConfig(filename='fileage.log', level=logging.DEBUG)
 
         for x in path:
-            exists = self.check_existence(x)
-            message.append(self.generate_message(exists))
+            message = self.generate_message(self.check_existence(x))
+            logging.info(message)
+            print(message)
         
-        self.show_tooltip(message)
-    
     def check_existence(self, path):
         # Checks if the file on given path exists
         # Returns True on success
@@ -50,12 +48,9 @@ class FileAge:
         
         if exists[1] == True:    
             tmp = self.time_format() - os.stat(exists[0])[stat.ST_MTIME]
-            return 'File Age: ' + str(round(tmp/60,2))
+            return exists[0] + ' ' + str(round(tmp/60,2))
         elif exists[1] == False:
-            return 'Error: Log file not found. Check the config.ini'
-
-    def show_tooltip(self, message):
-        communication.Communicate(message)
+            return 'File not found. Check the config.ini'
 
 if __name__ == '__main__':
     FileAge(config.Configuration('path').configuration)
